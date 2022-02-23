@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
 import { Appbar, Title } from "react-native-paper";
 
 export const TermsScreen = () => {
@@ -10,13 +10,9 @@ export const TermsScreen = () => {
   }
 
   return (
-    <ScrollView>
-      <Appbar.Header>
-        <Appbar.BackAction onPress={goBack} />
-        <Appbar.Content title="Terms and Conditions" />
-      </Appbar.Header>
+    <ScrollView style={styles.container}>
       <View style={{ padding: 32 }}>
-        <Text>
+        <Text style={styles.terms}>
           This Terms of Service, including all supplemental terms as amended
           from time to time, governs your use of the online game, service, or
           web site known as Star Wars: The Old Republic ("TOR" and the "TOR
@@ -29,8 +25,8 @@ export const TermsScreen = () => {
           Service at the "Terms of Service" link at the bottom of the TOR
           website from which you may also print a copy for your records.
         </Text>
-        <Title>1. Account</Title>
-        <Text>
+        <Text style={styles.title}>1. Account</Text>
+        <Text style={styles.terms}>
           A TOR Account ("Account") may be required to access and use TOR
           Services. If you have questions about Account registration, please
           contact us by visiting http://www.swtor.com/support. To create a TOR
@@ -54,16 +50,16 @@ export const TermsScreen = () => {
           reveal your password, or ever initiate any contact with you asking for
           your password reminder words.
         </Text>
-        <Title>2. Service</Title>
-        <Text>
+        <Text style={styles.title}>2. Service</Text>
+        <Text style={styles.terms}>
           Some TOR Services require payment of a fee. You must have an Account
           and pay the subscription or other fees to participate in these
           activities. Information about subscription and other fees for TOR
           Services is published in the relevant pages at
           http://www.swtor.com/support.
         </Text>
-        <Title>3. Privacy</Title>
-        <Text>
+        <Text style={styles.title}>3. Privacy</Text>
+        <Text style={styles.terms}>
           Your privacy is important to us. Please read the TOR Privacy Policy
           carefully for information relating to TOR collection and use of
           personal information. You may access the TOR Privacy Policy by
@@ -77,8 +73,8 @@ export const TermsScreen = () => {
           however, without your knowledge and consent as stated in our Privacy
           Policy at http://www.swtor.com/legalnotices/privacypolicy.
         </Text>
-        <Title>4. Content</Title>
-        <Text>
+        <Text style={styles.title}>4. Content</Text>
+        <Text style={styles.terms}>
           "Content" on TOR Services may include software, technology, text,
           artwork, music, sound, and other audio visual material, and the design
           and appearance of our websites. Content may be provided by third
@@ -95,14 +91,45 @@ export const TermsScreen = () => {
           parties or for the failure or delay in removing any such Content.
         </Text>
         <Image
-          style={{ width: 250, height: 250, marginVertical: 32 }}
+          style={styles.image}
           source={{
             uri: "https://media.giphy.com/media/krkrHAEodHgzP72rTI/giphy.gif",
           }}
         />
 
-        <Text style={{ marginBottom: 128 }}>May the force be with you</Text>
+        <Text style={styles.end}>May the force be with you</Text>
       </View>
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  terms: {
+    color: "white",
+    textAlign: "justify",
+  },
+  container: {
+    backgroundColor: "black",
+  },
+  title: {
+    color: "white",
+    marginTop: 20,
+    marginBottom: 10,
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  image: {
+    width: 250,
+    height: 250,
+    marginVertical: 32,
+    alignSelf: "center",
+  },
+  end: {
+    textAlign: "center",
+    color: "#FFF019",
+    textTransform: "uppercase",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 10,
+    textShadowColor: "#FFF019",
+  },
+});

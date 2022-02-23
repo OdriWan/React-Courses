@@ -1,20 +1,25 @@
 // App.tsx
-
 import React from "react";
-import { LoginScreen } from "./src/screens/LoginScreen";
-import { StarshipFeedScreen } from "./src/screens/StarshipFeedScreen";
-import { TermsScreen } from "./src/screens/TermsScreen";
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { NetworkProvider } from "react-native-offline";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClient = new QueryClient()
+import { Offline } from "./src/components/Offline";
+import Navigator from "./src/Navigation/Navigator";
+
+const queryClient = new QueryClient();
 
 const App = () => {
+  //   return <LoginScreen />;
+  //   return <TermsScreen/>
   return (
-  <QueryClientProvider client={queryClient}><StarshipFeedScreen/></QueryClientProvider>
-    //<LoginScreen />
-    //<TermsScreen />
-  )
+    <NetworkProvider>
+      <QueryClientProvider client={queryClient}>
+        <Offline />
+        <Navigator />
+      </QueryClientProvider>
+    </NetworkProvider>
+  );
 };
 
-// always export default App otherwise Expo is not happy
+// eslint-disable-next-line import/no-default-export
 export default App;

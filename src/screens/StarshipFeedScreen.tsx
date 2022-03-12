@@ -7,12 +7,14 @@ import {
   View,
   FlatList,
   ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 
 import { useStarships } from "../../hooks/useStarships";
 import { StarshipCard } from "../components/StarshipCard";
+import { Routes } from "../Navigation/Routes";
 
-export const StarshipFeedScreen = () => {
+export const StarshipFeedScreen = ({ navigation }) => {
   const { isLoading, isError, data } = useStarships();
 
   if (isLoading) {
@@ -22,8 +24,16 @@ export const StarshipFeedScreen = () => {
     return <Text> Error </Text>;
   }
 
-  const renderItem = ({ item }: any) => {
-    return <StarshipCard shipData={item} />;
+  function onPress(item: any) {
+    navigation.navigate(Routes.STARSHIP_DETAIL_SCREEN, { item: item });
+  }
+
+  const renderItem = ({ item }) => {
+    return (
+      <TouchableOpacity onPress={() => onPress(item)}>
+        <StarshipCard shipData={item} />
+      </TouchableOpacity>
+    );
   };
 
   return (
